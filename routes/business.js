@@ -4,6 +4,7 @@ const express = require('express'),
 
 const reviewModel = require('../models/reviewModel');
 
+
 router.get('/:name?', async (req, res) => {
     const singleData = await reviewModel.getOne(req.params.name);
     console.log(singleData)
@@ -21,13 +22,14 @@ router.get('/:name?', async (req, res) => {
         })
 });
 
-// router.post('/', async (req, res) =>{
-//     console.log('req.body:', req.body);
-//     for (let key in req.body){
-//         console.log("The key is:", key, req.body[key]);
-//         await languageModel.updateStatus(key, req.body[key]);
-//     }
-//     renderPage(res);
-// });
+router.post('/:name?', async (req, res) =>{
+    const reviewEntryData = await reviewModel.reviewUpdate(req.body.review_entry, req.params.name);
+    console.log('Entry Data:', reviewEntryData);
+    // for (let key in req.body){
+    //     console.log("The key is:", key, req.body[key]);
+    //     await reviewModel.updateReview(key, req.body[key]);
+    // }
+    res.send("ok");
+});
 
 module.exports = router;  //last line of all routes

@@ -30,14 +30,14 @@ class ReviewList {
         }
     }
 
-    // static async updateStatus(language, rank_id) {
-    //     try {
-    //         const response = await db.result(`UPDATE languages SET rank_id = $1 WHERE language =$2;`, [rank_id, language]);
-    //         return response;
-    //     } catch(error){
-    //         console.log("Error:", error);
-    //     }
-    // }
+    static async reviewUpdate(review, restaurant_id) {
+        try {
+            const response = await db.result(`UPDATE reviews INTO review;`, [review, restaurant_id]);
+            return response;
+        } catch(error){
+            console.log("Error:", error);
+        }
+    }
 }
 
 

@@ -7,3 +7,10 @@
     <li>Rating: ${data.stars}</li>
     <li>My Favorite Dish: ${data.favorite_dish}</li>
 </ul>
+<form action="/business/${data.slug}" method="POST">
+    <h2>Leave a review!</h2>
+<label>
+<textarea type="text" rows="10" name="review_entry"></textarea>
+</label>
+<button type="submit">Submit Review</button>
+</form>

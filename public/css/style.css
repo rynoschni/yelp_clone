@@ -19,8 +19,8 @@ li{
 }
 li {
     list-style: none;
-    line-height: 2;
-    font-size: 1.5rem;
+    line-height: 1;
+    font-size: 1rem;
 }
 a:link {
     text-decoration: none;
@@ -28,7 +28,7 @@ a:link {
 }
 a:hover {
     text-decoration: none;
-    color: silver;
+    color: peru;
 }
 a:visited {
     text-decoration: none;
@@ -37,5 +37,9 @@ a:visited {
 a:active {
     text-decoration: none;
     color: #EFEFEF;
+}
+
+.lglink {
+    font-size: 22px;
 }
 
