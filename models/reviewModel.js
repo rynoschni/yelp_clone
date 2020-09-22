@@ -30,9 +30,9 @@ class ReviewList {
         }
     }
 
-    static async reviewUpdate(review, restaurant_id) {
+    static async addReview(title, review, stars, restaurant_id) {
         try {
-            const response = await db.result(`UPDATE reviews INTO review;`, [review, restaurant_id]);
+            const response = await db.result(`INSERT INTO reviews (title, review, stars, reviewer_id, restaurant_id) VALUES ($1, $2, $3, $4, $5);`, [title, review, stars, 1, restaurant_id]);
             return response;
         } catch(error){
             console.log("Error:", error);

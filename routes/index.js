@@ -6,13 +6,13 @@ const reviewModel = require('../models/reviewModel');
 
 router.get('/', async (req, res, next) => {
     const reviewData = await reviewModel.getAll();
-    console.log(reviewData)
     // const statusData = await languageModel.getAllStatus();
     
     return res.render('template', {
         locals: {
             title: 'My Favorite Restaurants',
             data: reviewData,
+            is_logged_in: req.session.is_logged_in,
             // statusData: statusData,
         },
         partials: {

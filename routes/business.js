@@ -14,6 +14,7 @@ router.get('/:name?', async (req, res) => {
         locals: {
             title: 'My Favorite Restaurants',
             data: singleData,
+            is_logged_in: req.session.is_logged_in,
             // statusData: statusData,
         },
         partials: {
@@ -23,13 +24,13 @@ router.get('/:name?', async (req, res) => {
 });
 
 router.post('/:name?', async (req, res) =>{
-    const reviewEntryData = await reviewModel.reviewUpdate(req.body.review_entry, req.params.name);
-    console.log('Entry Data:', reviewEntryData);
-    // for (let key in req.body){
-    //     console.log("The key is:", key, req.body[key]);
-    //     await reviewModel.updateReview(key, req.body[key]);
-    // }
-    res.send("ok");
+    // const reviewer_id = req.session.user_id
+    const{title,review,stars,restaurant_id} = req.body;
+    
+    await reviewModel.addReview(title, review, stars, restaurant_id);
+    console.log(req.body);
+    // console.log(req.session.user_id);
+    res.redirect('back');
 });
 
 module.exports = router;  //last line of all routes

@@ -7,6 +7,9 @@
        
     </head>
     <body class="dark_theme">
+        ${!!is_logged_in ? `<button><a href="/user/logout">Logout</a></a></button>` : `<button><a href="user/login">Login</a></button>
+        <button><a href="user/signup">Signup</a></button>`}
+
         ${partial}
     </body>
 </html>
