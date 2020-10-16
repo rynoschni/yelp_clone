@@ -2,17 +2,20 @@ const { static } = require('express');
 const { query } = require('./con');
 const db = require('./con');
 
-class ReviewList {
-    constructor (name, category, stars) {
+class BlogList {
+    constructor (name, date, entry, title, slug, id) {
         this.name = name;
-        this.category = category;
-        this.stars = stars;
+        this.date = date;
+        this.entry = entry;
+        this.title = title;
+        this.slug = slug;
+        this.id = id;
     
     }
 
     static async getAll() {
         try {
-            const response = await db.any(`SELECT * FROM restaurant;`);
+            const response = await db.any(`SELECT * FROM blog_entry;`);
             return response;
         } catch(error) {
             return error.message;
@@ -21,7 +24,7 @@ class ReviewList {
 
     static async getOne(slug){
         try{
-            const response = await db.one(`SELECT * FROM restaurant WHERE slug = '${slug}';`);
+            const response = await db.one(`SELECT * FROM blog_entry WHERE slug = '${slug}';`);
             return response;
 
         } catch(error){
@@ -30,9 +33,9 @@ class ReviewList {
         }
     }
 
-    static async addReview(title, review, stars, restaurant_id) {
+    static async addEntry(title, entry) {
         try {
-            const response = await db.result(`INSERT INTO reviews (title, review, stars, reviewer_id, restaurant_id) VALUES ($1, $2, $3, $4, $5);`, [title, review, stars, 1, restaurant_id]);
+            const response = await db.result(`INSERT INTO blog_entry (title, entry) VALUES ($1, $2);`, [title, entry]);
             return response;
         } catch(error){
             console.log("Error:", error);
@@ -42,4 +45,4 @@ class ReviewList {
 
 
 
-module.exports = ReviewList;
+module.exports = BlogList;
